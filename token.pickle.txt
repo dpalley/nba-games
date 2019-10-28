@@ -1,0 +1,2 @@
+This is a stand-in for a "token.pickle" file that is generated and contains
+login credentials to access the Google Calendar.
