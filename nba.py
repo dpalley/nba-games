@@ -119,13 +119,22 @@ def add_to_calendar(place, start, stop, info):
 
 
 if __name__ == '__main__':
-    if sys.argv[1] == '-h' or sys.argv[1] == '--help':
+
+    # import pdb; pdb.set_trace()
+    if len(sys.argv) == 1:
+        games_to_review = 82
+    elif sys.argv[1] == '-h' or sys.argv[1] == '--help':
         help()
+        sys.exit()
+    try:
+        games_to_review = int(sys.argv[1])
+    except:
+        print('The parameter must either be an integer or "-h".\n')
         sys.exit()
 
     print('For each game, enter: "y" to add the game to your Calendar,')
     print('"q" to quit out of the script, or any other key to skip that game.')
-    games_to_review = 82 if len(sys.argv) == 1 else int(sys.argv[1])
+
     # service = get_calendar_service()
     games = get_schedule()
 
@@ -136,7 +145,6 @@ if __name__ == '__main__':
             continue
 
         game_info = [item.text for item in game_info]
-        # import pdb; pdb.set_trace()
         date, location, time, televised, tickets = game_info
         if date == 'Date':   # header row, skip
             continue
@@ -147,7 +155,7 @@ if __name__ == '__main__':
             continue
         print(get_info(televised, tickets))
         response = input('"y" to add, "q" to quit, or any other key to skip: ').lower()
-        # print(f'Answer was {response}')
+
         if response == 'q':
             break
         elif response == 'y':

@@ -1,5 +1,6 @@
-/env
-/temp
+env/
+temp/
 *.pyc
 credentials.json
 token.pickle
+.DS_Store
